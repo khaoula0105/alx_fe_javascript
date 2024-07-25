@@ -17,12 +17,12 @@
       font-size: 1.5em;
       text-align: center;
     }
-    #newQuoteForm {
+    .form-container {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    #newQuoteForm input {
+    .form-container input {
       margin: 5px 0;
     }
   </style>
@@ -31,11 +31,9 @@
   <h1>Dynamic Quote Generator</h1>
   <div id="quoteDisplay">Click the button to see a quote!</div>
   <button id="newQuote">Show New Quote</button>
-  <div id="newQuoteForm">
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button onclick="addQuote()">Add Quote</button>
-  </div>
+  <div id="formPlaceholder"></div>
+  <button id="exportQuotes">Export Quotes to JSON</button>
+  <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
   <script src="script.js"></script>
 </body>
 </html>

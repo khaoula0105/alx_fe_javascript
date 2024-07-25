@@ -9,14 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const newQuoteButton = document.getElementById("newQuote");
   
     function showRandomQuote() {
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      const randomQuote = quotes[randomIndex];
-      quoteDisplay.textContent = `"${randomQuote.text}" - ${randomQuote.category}`;
+      if (quotes.length > 0) {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex];
+        quoteDisplay.textContent = `"${randomQuote.text}" - ${randomQuote.category}`;
+      } else {
+        quoteDisplay.textContent = "No quotes available.";
+      }
     }
   
     function addQuote() {
-      const newQuoteText = document.getElementById("newQuoteText").value;
-      const newQuoteCategory = document.getElementById("newQuoteCategory").value;
+      const newQuoteText = document.getElementById("newQuoteText").value.trim();
+      const newQuoteCategory = document.getElementById("newQuoteCategory").value.trim();
       if (newQuoteText && newQuoteCategory) {
         quotes.push({ text: newQuoteText, category: newQuoteCategory });
         document.getElementById("newQuoteText").value = "";

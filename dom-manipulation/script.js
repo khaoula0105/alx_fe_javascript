@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (newQuoteText && newQuoteCategory) {
       quotes.push({ text: newQuoteText, category: newQuoteCategory });
       saveQuotes();
-      populateCategories();
+      updateCategoryFilter();
       document.getElementById("newQuoteText").value = "";
       document.getElementById("newQuoteCategory").value = "";
       alert("New quote added!");
@@ -84,14 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const importedQuotes = JSON.parse(event.target.result);
       quotes.push(...importedQuotes);
       saveQuotes();
-      populateCategories();
+      updateCategoryFilter();
       alert('Quotes imported successfully!');
       syncWithServer();
     };
     fileReader.readAsText(event.target.files[0]);
   }
 
-  function populateCategories() {
+  function updateCategoryFilter() {
     const uniqueCategories = [...new Set(quotes.map(quote => quote.category))];
     const currentFilter = categoryFilter.value;
     categoryFilter.innerHTML = '<option value="all">All Categories</option>';
@@ -153,9 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   newQuoteButton.addEventListener("click", showRandomQuote);
   exportQuotesButton.addEventListener("click", exportQuotes);
-  categoryFilter.addEventListener("change", filterQuotes);
   createAddQuoteForm();
-  populateCategories();
+  updateCategoryFilter();
 
   const lastSelectedCategory = localStorage.getItem("selectedCategory");
   if (lastSelectedCategory) {

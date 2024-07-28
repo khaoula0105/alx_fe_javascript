@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveQuotes();
     populateCategories();
     showRandomQuote();
+    alert("Quotes synced with server!");
   }
 
   function mergeQuotes(serverQuotes, localQuotes) {
